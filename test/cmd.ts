@@ -5,6 +5,7 @@ import { should } from 'chai';
 
 import { Cmd } from '../src/cmd';
 import { LoggerMock } from './mocks';
+import { CmdOptions } from '../src/types';
 
 should();
 
@@ -20,6 +21,22 @@ describe('Cmd', () => {
 
         subject.setOptions({ verbose: true });
         const actual = await subject.exec('cat', tmpobj.name);
+
+        actual.should.eq(expected);
+    });
+
+    it('should allow to set environment variables', async () => {
+        const envvar = 'ENVVAR';
+        const expected = 'envvarvalue';
+
+        const options: CmdOptions = {
+            verbose: true,
+            shell: true
+        };
+        options.env = {};
+        options.env[envvar] = expected;
+        subject.setOptions(options);
+        const actual = await subject.exec('echo', '-n', `$${envvar}`);
 
         actual.should.eq(expected);
     });
