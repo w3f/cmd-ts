@@ -2,10 +2,10 @@ import { Buffer } from 'buffer';
 import { spawn } from 'child_process';
 import { Logger } from '@w3f/logger';
 
-import { CmdOptions } from './types';
+import { CmdOptions, CmdManager } from './types';
 
 
-export class Cmd {
+export class Cmd implements CmdManager {
     constructor(private logger: Logger, private options?: CmdOptions) { }
 
     setOptions(options: CmdOptions): void {

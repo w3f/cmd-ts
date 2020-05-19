@@ -12,3 +12,8 @@ export interface CmdOptions {
     shell?: boolean;
     stdio?: Stdio;
 }
+
+export interface CmdManager {
+    setOptions(options: CmdOptions): void;
+    exec(...items: string[]): Promise<number | string>;
+}
