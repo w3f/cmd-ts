@@ -11,6 +11,7 @@ export interface CmdOptions {
     env?: EnvVar;
     shell?: boolean;
     stdio?: Stdio;
+    cwd?: string;
 }
 
 export interface CmdManager {
